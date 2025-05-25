@@ -15,6 +15,15 @@ const requestListener = async (request, response) => {
       response.statusCode = 404;
       response.end();
     }
+  } else if (url === "/style.css") {
+    try {
+      const data = await fs.readFile("./views/style.css", "utf-8");
+      response.statusCode = 200;
+      response.end(data);
+    } catch (error) {
+      response.statusCode = 404;
+      response.end();
+    }
   } else {
     response.statusCode = 404;
     response.end();
@@ -24,4 +33,4 @@ const server = http.createServer(requestListener);
 
 server.listen(PORT);
 
-//console.log(server);
+
