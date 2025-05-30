@@ -1,27 +1,12 @@
 const express = require("express");
-const yup = require("yup");
+const { validationUser } = require("./middlewares/index");
 
 const app = express();
 const bodyParser = express.json();
 
-const validationSchema = yup.object({
-  firstName: yup.string().required(),
-  firstName: yup.string().required(),
-  email: yup.string().email().required(),
-  password: yup.string(),
-  isSubscribed: yup.boolean().required(),
-});
-
 const PORT = 5000;
 
-app.post("/users", bodyParser, async (req, res, next) => {
-  try {
-    const value = await validationSchema.validate(req.body);
-    console.log(value);
-  } catch (error) {
-    res.status(400).send(error.message);
-  }
-});
+app.post("./", bodyParser, validationUser);
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
