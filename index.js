@@ -1,31 +1,26 @@
 const express = require("express");
+const yup = require("yup");
 
 const app = express();
+const bodyParser = express.json();
+
+const validationSchema = yup.object({
+  firstName: yup.string().required(),
+  firstName: yup.string().required(),
+  email: yup.string().email().required(),
+  password: yup.string(),
+  isSubscribed: yup.boolean().required(),
+});
 
 const PORT = 5000;
 
-app.get(
-  "/",
-  (request, response,next) => {                //  '/' - http://localhost:5000
-    // response.send("Hello world");
-    console.log("first requestHandler");
-
-    request.newfield = 'super-important-value'
-
-    next()
-  },
-  (request, response,next) => {
-    console.log("seconf requestHandler");
-    next()
-  },
-  (request, response,next) => {
-    console.log("third requestHandler");
-    console.log(request.newfield)
+app.post("/users", bodyParser, async (req, res, next) => {
+  try {
+    const value = await validationSchema.validate(req.body);
+    console.log(value);
+  } catch (error) {
+    res.status(400).send(error.message);
   }
-);
-
-app.get("/index.html", (request, response) => {
-  response.status(404).send("Text index.html");
 });
 
 app.listen(PORT, () => {

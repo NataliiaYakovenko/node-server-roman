@@ -3,5 +3,8 @@ Content-Type: application/json
 
 {
     "firstName": "Nataliia",
-    "lastName": "Yakovenko"
+    "lastName": "Yakovenko",
+    "email": "nataligmail.com",
+    "password": "Qwerty123",
+    "isSubscribed": true
 }
