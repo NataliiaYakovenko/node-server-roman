@@ -9,6 +9,8 @@ const PORT = 5000;
 
 app.post("/users", bodyParser, validationUser, UserController.registerUser);
 
+app.get("/users", UserController.getAllUsers);
+
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });

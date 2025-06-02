@@ -2,9 +2,9 @@ POST http://localhost:5000/users HTTP/1.1
 Content-Type: application/json
 
 {
-    "firstName": "Nataliia",
+    "firstName": "Lidia",
     "lastName": "Yakovenko",
-    "email": "natali@gmail.com",
+    "email": "lidia@gmail.com",
     "password": "Qwerty123",
     "isSubscribed": true
 }
