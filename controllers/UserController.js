@@ -14,3 +14,7 @@ module.exports.getAllUsers =(req,res,next)=>{
    const usersArray = User.findAll()
    res.status(200).send(usersArray)
 }
+
+module.exports.getOneUser = (req,res,next)=>{
+  console.log(req.require)
+}
