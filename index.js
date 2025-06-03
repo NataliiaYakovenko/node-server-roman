@@ -11,7 +11,9 @@ app.post("/users", bodyParser, validationUser, UserController.registerUser);
 
 app.get("/users", UserController.getAllUsers);
 
-app.get('users/:id', UserController.getOneUser)
+app.get('/users/:userId', UserController.getOneUser)
+
+app.delete('/users/:userId', UserController.deleteOneUser)
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);

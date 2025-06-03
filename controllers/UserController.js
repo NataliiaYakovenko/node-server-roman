@@ -10,11 +10,27 @@ module.exports.registerUser = (req, res, next) => {
   res.status(201).send(user);
 };
 
-module.exports.getAllUsers =(req,res,next)=>{
-   const usersArray = User.findAll()
-   res.status(200).send(usersArray)
-}
+module.exports.getAllUsers = (req, res, next) => {
+  const usersArray = User.findAll();
+  res.status(200).send(usersArray);
+};
 
-module.exports.getOneUser = (req,res,next)=>{
-  console.log(req.require)
-}
+module.exports.getOneUser = (req, res, next) => {
+  const { userId } = req.params;
+  const user = User.findOne(Number(userId));
+
+  if (userId) {
+    res.status(200).send(user);
+  } else {
+    res.status(400).end;
+  }
+};
+
+module.exports.deleteOneUser = (req, res, next) => {
+  const { userId } = req.params;
+  const user = User.findOne(Number(userId));
+
+  user.deleteUser();
+
+  res.status(200).send(user);
+};
