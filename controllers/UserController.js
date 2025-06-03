@@ -36,4 +36,20 @@ module.exports.deleteOneUser = (req, res, next) => {
   } else {
     res.status(400).end;
   }
+
+};
+
+module.exports.updateInfoUser = (req, res, next) => {
+  const {
+    body,
+    params: { userId },
+  } = req;
+  const user = User.findOne(Number(userId));
+
+  if (user) {
+    const updateUser = user.updateInfoUser(body);
+    res.status(200).send(updateUser);
+  } else {
+    res.status(400).end();
+  }
 };

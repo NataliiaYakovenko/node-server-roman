@@ -20,11 +20,16 @@ class User {
   }
 
   static findAll() {
-   return [...db.values()];
+    return [...db.values()];
   }
 
   deleteUser() {
     return db.delete(this.id);
+  }
+
+  updateInfoUser(updateFields) {
+    db.set(this.id, { ...this, ...updateFields });
+    return db.get(this.id);
   }
 }
 
